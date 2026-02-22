@@ -114,6 +114,47 @@
       font-size: 15px;
       color: #777;
     }
+    /* 讓卡片可以定位右上角 */
+.card{
+  position: relative;
+}
+
+/* 右上角成熟度摘要 */
+.maturity-corner{
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 12.5px;
+  color: #555;
+  text-align: right;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* 平常看到的簡短版本 */
+.maturity-brief{
+  font-size: 12px;
+  color: #666;
+}
+
+/* 詳細說明（預設隱藏） */
+.maturity-tip{
+  display: none;
+  margin-top: 6px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #333;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  width: 220px;
+}
+
+/* 滑過卡片才顯示說明 */
+.card:hover .maturity-tip{
+  display: block;
+}
   </style>
 </head>
 

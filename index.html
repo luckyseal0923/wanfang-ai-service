@@ -129,6 +129,7 @@
   text-align: right;
   line-height: 1.5;
   opacity: 0.85;
+  cursor: default;
 }
 
 /* 平常看到的簡短版本 */
@@ -151,8 +152,8 @@
   width: 220px;
 }
 
-/* 滑過卡片才顯示說明 */
-.card:hover .maturity-tip{
+/* ✅ 建議：滑過「成熟度區塊」才顯示（比較不吵） */
+.maturity-corner:hover .maturity-tip{
   display: block;
 }
   </style>
@@ -166,33 +167,49 @@
     將分散的院內作業轉為可追蹤、可管理、可優化的工作流程
   </div>
 
-  <div class="card-grid">
+ <div class="card-grid">
 
-    <div class="card">
-        <!-- 系統成熟度：右上角 -->
-  <div class="maturity-corner">
-    系統成熟度（開發中）
-    <div class="maturity-brief">👥 56｜📈 70%｜🔄 已系統化</div>
+  <div class="card">
+    
+    <!-- 系統成熟度：右上角 -->
+    <div class="maturity-corner">
+      系統成熟度（開發中）
+      <div class="maturity-brief">👥 56｜📈 70%｜🔄 已系統化</div>
 
-    <div class="maturity-tip">
-      本月有 <b>56</b> 位同仁使用系統<br>
-      使用覆蓋率約 <b>70%</b><br>
-      主要申請流程已系統化
-    </div>
-  </div>
-        <div class="card-title">公關品流程管理系統</div>
-        <div class="card-desc">
-本系統為院內公關品流程管理工具，結合 AI 輔助判斷 與 流程自動化機制，支援公關品申請、審核與發放之標準化與可追蹤管理。 系統可依申請內容進行流程分流與狀態紀錄，並提供集中化查詢功能，協助管理單位掌握使用情形，提升整體行政效率。
-        </div>
-      </div>
-      <div class="button-group">
-        <a class="btn btn-primary" href="https://promotional-items-booking.zeabur.app/" target="_blank">案件申請</a>
-        <a class="btn btn-secondary" href="https://promotional-items-booking.zeabur.app/Items-status.html" target="_blank">狀態看板</a>
-        <a class="btn btn-danger" href="https://promotional-items-booking.zeabur.app/admin.html" target="_blank">後臺管理</a>
+      <div class="maturity-tip">
+        本月有 <b>56</b> 位同仁使用系統<br>
+        使用覆蓋率約 <b>70%</b><br>
+        主要申請流程已系統化
       </div>
     </div>
 
+    <!-- 卡片主要內容 -->
+    <div>
+      <div class="card-title">公關品流程管理系統</div>
+      <div class="card-desc">
+        本系統為院內公關品流程管理工具，結合 AI 輔助判斷 與 流程自動化機制，
+        支援公關品申請、審核與發放之標準化與可追蹤管理。
+        系統可依申請內容進行流程分流與狀態紀錄，並提供集中化查詢功能，
+        協助管理單位掌握使用情形，提升整體行政效率。
+      </div>
+    </div>
+
+    <!-- ✅ 卡片內底部按鈕（重點在這） -->
+    <div class="card-actions">
+      <a class="btn btn-primary" href="https://promotional-items-booking.zeabur.app/" target="_blank">
+        案件申請
+      </a>
+      <a class="btn btn-secondary" href="https://promotional-items-booking.zeabur.app/items-status.html" target="_blank">
+        狀態看板
+      </a>
+      <a class="btn btn-danger" href="https://promotional-items-booking.zeabur.app/admin.html" target="_blank">
+        後臺管理
+      </a>
+    </div>
+
   </div>
+
+</div>
 
   <footer>
     © WorkHub｜AI 與自動化院內工作平台

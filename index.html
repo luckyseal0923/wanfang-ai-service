@@ -8,24 +8,23 @@
   <style>
     body {
       margin: 0;
-      padding: 40px; /* 增加邊距 */
+      padding: 40px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                    "Noto Sans TC", Arial, sans-serif;
       background: #f4f6f8;
       color: #222;
     }
 
-    /* 放大主標題 */
     h1 {
       margin: 0 0 15px;
-      font-size: 36px; /* 原為 28px */
+      font-size: 36px;
       font-weight: 800;
     }
 
     .subtitle {
       color: #444;
       margin-bottom: 48px;
-      font-size: 18px; /* 原為 15px */
+      font-size: 18px;
       line-height: 1.8;
     }
 
@@ -38,39 +37,38 @@
     .card {
       background: #ffffff;
       border-radius: 20px;
-      padding: 36px; /* 增加卡片內邊距 */
+      padding: 36px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.08);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: relative; /* 讓子元素可以絕對定位 */
     }
 
-    /* 放大卡片標題 */
     .card-title {
-      font-size: 24px; /* 原為 20px */
+      font-size: 24px;
       font-weight: 800;
       margin-bottom: 18px;
       color: #000;
     }
 
     .card-desc {
-      font-size: 16.5px; /* 原為 14.5px */
+      font-size: 16.5px;
       color: #333;
       line-height: 1.8;
       margin-bottom: 30px;
     }
 
-    .button-group {
+    .button-group, .card-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
     }
 
-    /* 放大按鈕與文字 */
     .btn {
-      padding: 14px 24px; /* 增加點擊區域面積 */
+      padding: 14px 24px;
       border-radius: 12px;
-      font-size: 17px; /* 原為 14px */
+      font-size: 17px;
       font-weight: 600;
       cursor: pointer;
       border: none;
@@ -114,48 +112,72 @@
       font-size: 15px;
       color: #777;
     }
-    /* 讓卡片可以定位右上角 */
-.card{
-  position: relative;
-}
 
-/* 右上角成熟度摘要 */
-.maturity-corner{
-  position: absolute;
-  top: 16px;
-  right: 18px;
-  font-size: 12.5px;
-  color: #555;
-  text-align: right;
-  line-height: 1.5;
-  opacity: 0.85;
-  cursor: default;
-}
+    .maturity-corner {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-size: 12.5px;
+      color: #555;
+      text-align: right;
+      line-height: 1.5;
+      opacity: 0.85;
+      cursor: default;
+      z-index: 10;
+    }
 
-/* 平常看到的簡短版本 */
-.maturity-brief{
-  font-size: 12px;
-  color: #666;
-}
+    .maturity-brief {
+      font-size: 12px;
+      color: #666;
+    }
 
-/* 詳細說明（預設隱藏） */
-.maturity-tip{
-  display: none;
-  margin-top: 6px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  padding: 8px 10px;
-  border-radius: 8px;
-  font-size: 12px;
-  color: #333;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  width: 220px;
-}
+    .maturity-tip {
+      display: none;
+      margin-top: 6px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #333;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      width: 220px;
+    }
 
-/* ✅ 建議：滑過「成熟度區塊」才顯示（比較不吵） */
-.maturity-corner:hover .maturity-tip{
-  display: block;
-}
+    .maturity-corner:hover .maturity-tip {
+      display: block;
+    }
+
+    /* 開發中卡片的特殊樣式 */
+    .card-developing {
+      background: #fdfdfd;
+      border: 2px dashed #cbd5e0;
+      box-shadow: none;
+      filter: grayscale(0.8);
+      opacity: 0.8;
+      transition: all 0.3s ease;
+      overflow: hidden; /* 確保背景字不溢出 */
+    }
+
+    .card-developing:hover {
+      filter: grayscale(0.2);
+      opacity: 1;
+      border-color: #0a84ff;
+    }
+
+    /* 背景開發中大字體 */
+    .dev-label {
+      position: absolute;
+      font-size: 72px;
+      font-weight: 900;
+      color: rgba(0, 0, 0, 0.05);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
   </style>
 </head>
 
@@ -167,51 +189,62 @@
     將分散的院內作業轉為可追蹤、可管理、可優化的工作流程
   </div>
 
- <div class="card-grid">
+  <div class="card-grid">
 
-  <div class="card">
-    
-    <!-- 系統成熟度：右上角 -->
-    <div class="maturity-corner">
-      系統成熟度（開發中）
-      <div class="maturity-brief">👥 56｜📈 70%｜🔄 已系統化</div>
-
-      <div class="maturity-tip">
-        本月有 <b>56</b> 位同仁使用系統<br>
-        使用覆蓋率約 <b>70%</b><br>
-        主要申請流程已系統化
+    <div class="card">
+      <div class="maturity-corner">
+        系統成熟度（開發中）
+        <div class="maturity-brief">👥 56｜📈 70%｜🔄 已系統化</div>
+        <div class="maturity-tip">
+          本月有 <b>56</b> 位同仁使用系統<br>
+          使用覆蓋率約 <b>70%</b><br>
+          主要申請流程已系統化
+        </div>
       </div>
-    </div>
 
-    <!-- 卡片主要內容 -->
-    <div>
-      <div class="card-title">公關品流程管理系統</div>
-      <div class="card-desc">
-        本系統為院內公關品流程管理工具，結合 AI 輔助判斷 與 流程自動化機制，
-        支援公關品申請、審核與發放之標準化與可追蹤管理。
-        系統可依申請內容進行流程分流與狀態紀錄，並提供集中化查詢功能，
-        協助管理單位掌握使用情形，提升整體行政效率。
+      <div>
+        <div class="card-title">公關品流程管理系統</div>
+        <div class="card-desc">
+          本系統為院內公關品流程管理工具，結合 AI 輔助判斷 與 流程自動化機制，
+          支援公關品申請、審核與發放之標準化與可追蹤管理。
+          系統可依申請內容進行流程分流與狀態紀錄，並提供集中化查詢功能，
+          協助管理單位掌握使用情形，提升整體行政效率。
+        </div>
       </div>
-    </div>
 
-    <!-- ✅ 卡片內底部按鈕（重點在這） -->
-    <div class="card-actions">
-      <a class="btn btn-primary" href="https://promotional-items-booking.zeabur.app/" target="_blank">
-        案件申請
-      </a>
-      <a class="btn btn-secondary" href="https://promotional-items-booking.zeabur.app/Items-status.html" target="_blank">
-        狀態看板
-      </a>
-      <a class="btn btn-danger" href="https://promotional-items-booking.zeabur.app/admin.html" target="_blank">
-        後臺管理
-      </a>
-    </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" href="https://promotional-items-booking.zeabur.app/" target="_blank">案件申請</a>
+        <a class="btn btn-secondary" href="https://promotional-items-booking.zeabur.app/Items-status.html" target="_blank">狀態看板</a>
+        <a class="btn btn-danger" href="https://promotional-items-booking.zeabur.app/admin.html" target="_blank">後臺管理</a>
+      </div>
+    </div> <div class="card card-developing">
+      <div class="dev-label">開發中</div>
+      
+      <div class="maturity-corner">
+        系統成熟度（規劃中）
+        <div class="maturity-brief">👥 0｜📈 15%｜🔄 介面開發</div>
+        <div class="maturity-tip">
+          目前處於<b>邏輯開發</b>階段<br>
+          預計下個月開啟內部測試
+        </div>
+      </div>
 
-  </div>
+      <div>
+        <div class="card-title">智慧班表簽核系統</div>
+        <div class="card-desc">
+          本系統旨在自動化院內排班流程，結合勞基法規則判斷與自動檢核機制。
+          未來將提供跨裝置簽核功能，確保班表記錄之即時性與正確性。
+          <br><br>
+          <b style="color:#0a84ff;">[ 目前進度：前端版面配置中 ]</b>
+        </div>
+      </div>
 
-</div>
-
-  <footer>
+      <div class="button-group">
+        <a class="btn btn-secondary" href="https://smartroster.zeabur.app/index.html" target="_blank">任務建立</a>
+        <a class="btn btn-secondary" href="https://smartroster.zeabur.app/confirm.html" target="_blank">班表確認</a>
+        <a class="btn btn-secondary" href="https://smartroster.zeabur.app/sign.html" target="_blank">簽核頁面</a>
+      </div>
+    </div> </div> <footer>
     © WorkHub｜AI 與自動化院內工作平台
   </footer>
 

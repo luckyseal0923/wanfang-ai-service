@@ -215,7 +215,9 @@
       <div class="card-actions">
         <a class="btn btn-primary" href="https://promotional-items-booking.zeabur.app/" target="_blank">案件申請</a>
         <a class="btn btn-secondary" href="https://promotional-items-booking.zeabur.app/Items-status.html" target="_blank">狀態看板</a>
-        <a class="btn btn-danger" href="https://promotional-items-booking.zeabur.app/admin.html" target="_blank">後臺管理</a>
+        <a class="btn btn-danger"
+   href="#"
+   onclick="openAdminAuth()">後臺管理</a>
       </div>
     </div> <div class="card card-developing">
       <div class="dev-label">開發中</div>
@@ -244,9 +246,65 @@
         <a class="btn btn-secondary" href="https://smartroster.zeabur.app/confirm.html" target="_blank">班表確認</a>
         <a class="btn btn-secondary" href="https://smartroster.zeabur.app/sign.html" target="_blank">簽核頁面</a>
       </div>
-    </div> </div> <footer>
-    © WorkHub｜AI 與自動化院內工作平台
-  </footer>
+</div> </div> 
+
+<footer>
+  © WorkHub｜AI 與自動化院內工作平台
+</footer>
+
+<!-- ① 登入視窗 HTML（一定在 script 前） -->
+<div id="adminModal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  align-items:center;
+  justify-content:center;
+  z-index:9999;">
+  <div style="
+    background:#fff;
+    padding:24px 28px;
+    border-radius:14px;
+    width:320px;
+    box-shadow:0 12px 30px rgba(0,0,0,.2);">
+
+    <h3 style="margin-top:0">後台登入</h3>
+
+    <input id="adminUser" placeholder="帳號"
+      style="width:100%; padding:10px; margin-bottom:12px;">
+
+    <input id="adminPass" type="password" placeholder="密碼"
+      style="width:100%; padding:10px; margin-bottom:16px;">
+
+    <div style="text-align:right">
+      <button onclick="closeAdminAuth()">取消</button>
+      <button onclick="checkAdminAuth()">登入</button>
+    </div>
+  </div>
+</div>
+
+<!-- ② JS（一定在 modal 後面） -->
+<script>
+function openAdminAuth(){
+  document.getElementById('adminModal').style.display = 'flex';
+}
+
+function closeAdminAuth(){
+  document.getElementById('adminModal').style.display = 'none';
+}
+
+function checkAdminAuth(){
+  const u = document.getElementById('adminUser').value;
+  const p = document.getElementById('adminPass').value;
+
+  if(u === 'E110' && p === 'E110E110'){
+    window.location.href =
+      'https://promotional-items-booking.zeabur.app/admin.html';
+  } else {
+    alert('帳號或密碼錯誤');
+  }
+}
+</script>
 
 </body>
 </html>

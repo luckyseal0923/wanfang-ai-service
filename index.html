@@ -178,6 +178,70 @@
       pointer-events: none;
       user-select: none;
     }
+    /* ===== 後台登入視窗美化 ===== */
+.admin-modal-card {
+  background: #fff;
+  padding: 28px 30px;
+  border-radius: 16px;
+  width: 340px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.admin-modal-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  outline: none;
+}
+
+.admin-input:focus {
+  border-color: #0a84ff;
+  box-shadow: 0 0 0 2px rgba(10,132,255,0.15);
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.admin-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.admin-btn-cancel {
+  background: #e5e7eb;
+  color: #333;
+}
+
+.admin-btn-cancel:hover {
+  background: #d1d5db;
+}
+
+.admin-btn-primary {
+  background: #0a84ff;
+  color: #fff;
+}
+
+.admin-btn-primary:hover {
+  background: #0070e3;
+}
   </style>
 </head>
 
@@ -261,26 +325,18 @@
   align-items:center;
   justify-content:center;
   z-index:9999;">
-  <div style="
-    background:#fff;
-    padding:24px 28px;
-    border-radius:14px;
-    width:320px;
-    box-shadow:0 12px 30px rgba(0,0,0,.2);">
+<div class="admin-modal-card">
+  <div class="admin-modal-title">🔐 後台登入</div>
 
-    <h3 style="margin-top:0">後台登入</h3>
+  <input id="adminUser" class="admin-input" placeholder="帳號">
 
-    <input id="adminUser" placeholder="帳號"
-      style="width:100%; padding:10px; margin-bottom:12px;">
+  <input id="adminPass" class="admin-input" type="password" placeholder="密碼">
 
-    <input id="adminPass" type="password" placeholder="密碼"
-      style="width:100%; padding:10px; margin-bottom:16px;">
-
-    <div style="text-align:right">
-      <button onclick="closeAdminAuth()">取消</button>
-      <button onclick="checkAdminAuth()">登入</button>
-    </div>
+  <div class="admin-actions">
+    <button class="admin-btn admin-btn-cancel" onclick="closeAdminAuth()">取消</button>
+    <button class="admin-btn admin-btn-primary" onclick="checkAdminAuth()">登入</button>
   </div>
+</div>
 </div>
 
 <!-- ② JS（一定在 modal 後面） -->

@@ -322,6 +322,41 @@
 
 </div>
  </div> 
+  <div class="card">
+
+  <div class="maturity-corner">
+    系統成熟度（運行中）
+    <div class="maturity-brief">👥 PICC小組｜📈 內部使用｜🔄 任務管理</div>
+    <div class="maturity-tip">
+      本系統僅供 PICC 小組內部使用<br>
+      用於管理 PICC 會診任務與施作進度
+    </div>
+  </div>
+
+  <div>
+    <div class="card-title">PICC智慧會診系統</div>
+
+    <div class="card-desc">
+      PICC 智慧會診系統為 PICC 小組之任務管理與施作追蹤工具，
+      透過任務化管理集中整合 PICC 會診案件與病人處理進度。
+
+      系統可即時呈現待施作病人與任務狀態，
+      協助團隊掌握工作負載與處理順序，
+      避免資訊分散與任務遺漏。
+
+      透過即時資訊更新與集中化管理，
+      提升 PICC 置管作業之效率與時效性，
+      強化團隊協作與臨床流程管理能力。
+    </div>
+  </div>
+
+  <div class="card-actions">
+    <a class="btn btn-primary" href="#" onclick="piccNotice()">任務起單</a>
+    <a class="btn btn-secondary" href="#" onclick="piccNotice()">待施打清單</a>
+    <a class="btn btn-danger" href="#" onclick="piccNotice()">後臺管理</a>
+  </div>
+
+</div>
 
 <footer>
   © WorkHub｜AI 與自動化院內工作平台
@@ -370,6 +405,10 @@ function checkAdminAuth(){
   } else {
     alert('帳號或密碼錯誤');
   }
+}
+
+  function piccNotice(){
+  alert("本系統不開放，僅PICC小組內部使用");
 }
 </script>
 
